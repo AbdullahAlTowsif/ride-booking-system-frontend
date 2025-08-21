@@ -18,6 +18,9 @@ import { useRegisterMutation } from "@/redux/features/auth/auth.api";
 import Password from "@/components/ui/Password";
 import toast from "react-hot-toast";
 
+
+const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?])(?=.*\d).{8,}$/;
+
 const registerSchema = z
   .object({
     name: z
@@ -26,8 +29,13 @@ const registerSchema = z
         error: "Name must be at least 3 characters",
       })
       .max(50),
-    email: z.email(),
-    password: z.string().min(8, { error: "Password must be minimum 8 characters" }),
+    email: z.string().email(),
+    password: z
+      .string()
+      .min(8, { error: "Password must be minimum 8 characters" })
+      .regex(passwordRegex, {
+        message: "Password must contain at least one uppercase letter, one special character, and one number",
+      }),
     confirmPassword: z
       .string()
       .min(8, { error: "Confirm Password is too short" }),
