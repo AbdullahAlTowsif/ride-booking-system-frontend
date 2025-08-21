@@ -3,22 +3,22 @@ import { Clock, ShieldCheck, Wallet, Star } from "lucide-react"
 
 const highlights = [
   {
-    icon: <Clock className="w-10 h-10 text-indigo-600 mb-4" />,
+    icon: <Clock className="w-10 h-10 text-indigo-600 dark:text-indigo-400 mb-4" />,
     title: "Fast & Reliable",
     description: "Book a ride instantly and get matched with nearby drivers within seconds.",
   },
   {
-    icon: <ShieldCheck className="w-10 h-10 text-indigo-600 mb-4" />,
+    icon: <ShieldCheck className="w-10 h-10 text-indigo-600 dark:text-indigo-400 mb-4" />,
     title: "Safe & Secure",
     description: "Every ride is tracked, drivers are verified, and your safety comes first.",
   },
   {
-    icon: <Wallet className="w-10 h-10 text-indigo-600 mb-4" />,
+    icon: <Wallet className="w-10 h-10 text-indigo-600 dark:text-indigo-400 mb-4" />,
     title: "Affordable Pricing",
     description: "Transparent fares with no hidden charges. Pay online or with cash.",
   },
   {
-    icon: <Star className="w-10 h-10 text-indigo-600 mb-4" />,
+    icon: <Star className="w-10 h-10 text-indigo-600 dark:text-indigo-400 mb-4" />,
     title: "Top-rated Drivers",
     description: "Ride with professional, well-reviewed drivers for a smooth experience.",
   },
@@ -26,10 +26,10 @@ const highlights = [
 
 export default function ServiceHighlights() {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-gray-50 dark:bg-black">
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">Why Choose Us?</h2>
-        <p className="text-gray-600 mb-12">
+        <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">Why Choose Us?</h2>
+        <p className="text-gray-800 dark:text-gray-100 mb-12">
           Experience convenience, safety, and comfort with every ride.
         </p>
 
@@ -46,7 +46,7 @@ export default function ServiceHighlights() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600">{item.description}</p>
+                <p className="text-sm text-gray-800 dark:text-gray-100">{item.description}</p>
               </CardContent>
             </Card>
           ))}

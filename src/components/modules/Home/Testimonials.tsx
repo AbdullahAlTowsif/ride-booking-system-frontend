@@ -31,10 +31,10 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50 dark:bg-black">
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">What Our Users Say</h2>
-        <p className="text-gray-600 mb-12">
+        <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">What Our Users Say</h2>
+        <p className="text-muted-foreground mb-12">
           Hear from riders and drivers who love using our platform.
         </p>
 
@@ -47,7 +47,7 @@ export default function Testimonials() {
                   <AvatarFallback>{t.name.charAt(0)}</AvatarFallback>
                 </Avatar>
                 <h3 className="font-semibold text-lg">{t.name}</h3>
-                <p className="text-sm text-gray-500">{t.role}</p>
+                <p className="text-sm text-muted-foreground">{t.role}</p>
               </CardHeader>
               <CardContent className="text-center">
                 <div className="flex justify-center mb-3">
@@ -55,7 +55,7 @@ export default function Testimonials() {
                     <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
                   ))}
                 </div>
-                <p className="text-sm text-gray-600">{t.feedback}</p>
+                <p className="text-sm text-muted-foreground">{t.feedback}</p>
               </CardContent>
             </Card>
           ))}

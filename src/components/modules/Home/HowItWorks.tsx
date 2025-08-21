@@ -3,22 +3,22 @@ import { MapPin, Car, SatelliteDish, CheckCircle } from "lucide-react"
 
 const steps = [
   {
-    icon: <MapPin className="w-10 h-10 text-indigo-600 mb-4" />,
+    icon: <MapPin className="w-10 h-10 text-indigo-600 dark:text-indigo-400 mb-4" />,
     title: "Enter Pickup & Destination",
     description: "Set where you want to go with a few taps.",
   },
   {
-    icon: <Car className="w-10 h-10 text-indigo-600 mb-4" />,
+    icon: <Car className="w-10 h-10 text-indigo-600 dark:text-indigo-400 mb-4" />,
     title: "Get Matched with a Driver",
     description: "We’ll connect you to the nearest available driver.",
   },
   {
-    icon: <SatelliteDish className="w-10 h-10 text-indigo-600 mb-4" />,
+    icon: <SatelliteDish className="w-10 h-10 text-indigo-600 dark:text-indigo-400 mb-4" />,
     title: "Track Your Ride",
     description: "Follow your driver’s location in real time.",
   },
   {
-    icon: <CheckCircle className="w-10 h-10 text-indigo-600 mb-4" />,
+    icon: <CheckCircle className="w-10 h-10 text-indigo-600 dark:text-indigo-400 mb-4" />,
     title: "Arrive Safely",
     description: "Enjoy your ride and don’t forget to rate your driver.",
   },
@@ -26,10 +26,12 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50 dark:bg-black transition-colors">
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">How It Works</h2>
-        <p className="text-gray-600 mb-12">
+        <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+          How It Works
+        </h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-12">
           Booking a ride is simple, fast, and safe.
         </p>
 
@@ -37,16 +39,18 @@ export default function HowItWorks() {
           {steps.map((step, index) => (
             <Card
               key={index}
-              className="hover:shadow-lg transition-all duration-200"
+              className="hover:shadow-lg transition-all duration-200 dark:bg-gray-800 dark:border-gray-700"
             >
               <CardHeader>
-                <CardTitle className="flex flex-col items-center">
+                <CardTitle className="flex flex-col items-center text-gray-800 dark:text-gray-100">
                   {step.icon}
                   <span className="mt-2 text-lg">{step.title}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600">{step.description}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  {step.description}
+                </p>
               </CardContent>
             </Card>
           ))}
