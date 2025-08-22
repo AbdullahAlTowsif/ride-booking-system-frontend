@@ -25,9 +25,26 @@ export const adminApi = baseApi.injectEndpoints({
       providesTags: ["USER"],
     //   transformResponse: (response: IResponse<ITourPackage[]>) => response.data,
     }),
+    blockRider: builder.mutation({
+      query: (id: string) => ({
+        url: `/admin/user/block/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["USER"],
+    }),
+
+    unblockRider: builder.mutation({
+      query: (id: string) => ({
+        url: `/admin/user/unblock/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["USER"],
+    }),
   }),
 });
 
 export const {
   useGetAllUsersQuery,
+  useBlockRiderMutation,
+  useUnblockRiderMutation,
 } = adminApi;
