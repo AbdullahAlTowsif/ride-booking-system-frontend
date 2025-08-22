@@ -1,5 +1,6 @@
 import AllUsers from "@/pages/Admin/AllUsers";
 import AnalyticsReport from "@/pages/Admin/AnalyticsReport";
+import ApproveSuspendDriver from "@/pages/Admin/ApproveSuspendDriver";
 import BlockUnblockRiders from "@/pages/Admin/BlockUnblockRiders";
 import RideOversight from "@/pages/Admin/RideOversight";
 import type { ISidebarItem } from "@/types/index.types";
@@ -29,6 +30,11 @@ export const adminSidebarItems: ISidebarItem[] = [
         url: "/admin/block-unblock-riders",
         component: BlockUnblockRiders,
       },
+      {
+        title: "Approve & Suspend Drivers",
+        url: "/admin/approve-suspend-drivers",
+        component: ApproveSuspendDriver
+      }
     ],
   },
   {

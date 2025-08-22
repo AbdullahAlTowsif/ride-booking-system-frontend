@@ -25,6 +25,13 @@ export const adminApi = baseApi.injectEndpoints({
       providesTags: ["USER"],
     //   transformResponse: (response: IResponse<ITourPackage[]>) => response.data,
     }),
+    getAllDrivers: builder.query({
+      query: () => ({
+        url: "/admin/drivers",
+        method: "GET",
+      }),
+      providesTags: ["USER"],
+    }),
     blockRider: builder.mutation({
       query: (id: string) => ({
         url: `/admin/user/block/${id}`,
@@ -40,6 +47,22 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["USER"],
     }),
+
+    approveDriver: builder.mutation({
+      query: (id: string) => ({
+        url: `/admin/driver/approve/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["USER"],
+    }),
+
+    suspendDriver: builder.mutation({
+      query: (id: string) => ({
+        url: `/admin/driver/suspend/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["USER"],
+    }),
   }),
 });
 
@@ -47,4 +70,7 @@ export const {
   useGetAllUsersQuery,
   useBlockRiderMutation,
   useUnblockRiderMutation,
+  useApproveDriverMutation,
+  useSuspendDriverMutation,
+  useGetAllDriversQuery
 } = adminApi;
