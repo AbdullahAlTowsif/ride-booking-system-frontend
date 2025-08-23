@@ -1,8 +1,8 @@
+import AllRides from "@/pages/Admin/AllRides";
 import AllUsers from "@/pages/Admin/AllUsers";
 import AnalyticsReport from "@/pages/Admin/AnalyticsReport";
 import ApproveSuspendDriver from "@/pages/Admin/ApproveSuspendDriver";
 import BlockUnblockRiders from "@/pages/Admin/BlockUnblockRiders";
-import RideOversight from "@/pages/Admin/RideOversight";
 import type { ISidebarItem } from "@/types/index.types";
 
 
@@ -43,7 +43,7 @@ export const adminSidebarItems: ISidebarItem[] = [
       {
         title: "All Rides",
         url: "/admin/all-rides",
-        component: RideOversight,
+        component: AllRides,
       },
     ],
   },
