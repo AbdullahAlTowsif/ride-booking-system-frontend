@@ -24,6 +24,13 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       providesTags: ["USER"],
     }),
+    getReport: builder.query({
+      query: () => ({
+        url: "/admin/report",
+        method: "GET",
+      }),
+      providesTags: ["REPORT"],
+    }),
     blockRider: builder.mutation({
       query: (id: string) => ({
         url: `/admin/user/block/${id}`,
@@ -66,4 +73,5 @@ export const {
   useSuspendDriverMutation,
   useGetAllDriversQuery,
   useGetAllRidesQuery,
+  useGetReportQuery,
 } = adminApi;
