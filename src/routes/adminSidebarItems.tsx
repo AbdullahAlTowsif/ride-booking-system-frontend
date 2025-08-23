@@ -3,6 +3,8 @@ import AllUsers from "@/pages/Admin/AllUsers";
 import AnalyticsReport from "@/pages/Admin/AnalyticsReport";
 import ApproveSuspendDriver from "@/pages/Admin/ApproveSuspendDriver";
 import BlockUnblockRiders from "@/pages/Admin/BlockUnblockRiders";
+import UpdateAdminProfile from "@/pages/Admin/UpdateAdminProfile";
+import ChangePassword from "@/pages/Auth/ChangePassword";
 import type { ISidebarItem } from "@/types/index.types";
 
 
@@ -44,6 +46,21 @@ export const adminSidebarItems: ISidebarItem[] = [
         title: "All Rides",
         url: "/admin/all-rides",
         component: AllRides,
+      },
+    ],
+  },
+  {
+    title: "Profile Management",
+    items: [
+      {
+        title: "Update Profile",
+        url: "/admin/update-profile",
+        component: UpdateAdminProfile,
+      },
+      {
+        title: "Change Password",
+        url: "/admin/change-password",
+        component: ChangePassword,
       },
     ],
   },

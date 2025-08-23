@@ -62,6 +62,14 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["USER"],
     }),
+    adminUpdateProfile: builder.mutation({
+      query: ({id, payload}) => ({
+        url: `/user/${id}`,
+        method: "PATCH",
+        data: payload,
+      }),
+      invalidatesTags: ["USER"],
+    }),
   }),
 });
 
@@ -74,4 +82,5 @@ export const {
   useGetAllDriversQuery,
   useGetAllRidesQuery,
   useGetReportQuery,
+  useAdminUpdateProfileMutation,
 } = adminApi;
