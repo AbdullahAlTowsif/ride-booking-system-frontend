@@ -17,9 +17,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRegisterMutation } from "@/redux/features/auth/auth.api";
 import Password from "@/components/ui/Password";
 import toast from "react-hot-toast";
+import config from "@/config";
 
-
-const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?])(?=.*\d).{8,}$/;
+const passwordRegex =
+  /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?])(?=.*\d).{8,}$/;
 
 const registerSchema = z
   .object({
@@ -34,7 +35,8 @@ const registerSchema = z
       .string()
       .min(8, { error: "Password must be minimum 8 characters" })
       .regex(passwordRegex, {
-        message: "Password must contain at least one uppercase letter, one special character, and one number",
+        message:
+          "Password must contain at least one uppercase letter, one special character, and one number",
       }),
     confirmPassword: z
       .string()
@@ -171,13 +173,15 @@ export function RegisterForm({
           </span>
         </div>
 
-        <Button
-          type="button"
-          variant="outline"
-          className="w-full cursor-pointer"
-        >
-          Login with Google
-        </Button>
+        <Link to={`${config.baseUrl}/auth/google`}>
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full cursor-pointer"
+          >
+            Login with Google
+          </Button>
+        </Link>
       </div>
 
       <div className="text-center text-sm">

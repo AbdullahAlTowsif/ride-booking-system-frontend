@@ -25,12 +25,12 @@ export function LoginForm({
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await login(data).unwrap();
-      if(res.success) {
+      if (res.success) {
         toast.success("User Logged In Successfully!");
         navigate("/");
       }
       console.log(res);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error(err);
     }
@@ -96,14 +96,15 @@ export function LoginForm({
           </span>
         </div>
 
-        <Button
-        onClick={() => window.open(`${config.baseUrl}/auth/google`)}
-          type="button"
-          variant="outline"
-          className="w-full cursor-pointer"
-        >
-          Login with Google
-        </Button>
+        <Link to={`${config.baseUrl}/auth/google`}>
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full cursor-pointer"
+          >
+            Login with Google
+          </Button>
+        </Link>
       </div>
       <div className="text-center text-sm">
         Don&apos;t have an account?{" "}
