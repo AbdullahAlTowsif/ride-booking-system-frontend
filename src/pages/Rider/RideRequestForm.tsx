@@ -53,7 +53,13 @@ export default function RideRequestForm() {
       console.log("payload", payload);
 
       const res = await rideRequest(payload).unwrap();
-      toast.success("Ride request submitted successfully!");
+      // toast.success("Ride request submitted successfully!");
+      if (res.success) {
+        toast.success("Ride request submitted successfully!");
+        form.reset();
+      } else {
+        toast.error("Something went wrong");
+      }
       form.reset();
     } catch (err: any) {
       console.error(err);
@@ -115,7 +121,11 @@ export default function RideRequestForm() {
                   <FormItem>
                     <FormLabel>Fare</FormLabel>
                     <FormControl>
-                      <Input {...field} type="number" placeholder="Enter fare" />
+                      <Input
+                        {...field}
+                        type="number"
+                        placeholder="Enter fare"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

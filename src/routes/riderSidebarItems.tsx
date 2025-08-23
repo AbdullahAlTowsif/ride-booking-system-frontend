@@ -1,5 +1,6 @@
 import RideHistory from "@/pages/Rider/RideHistory";
 import RideRequestForm from "@/pages/Rider/RideRequestForm";
+import UpdateRiderProfile from "@/pages/Rider/UpdateRiderProfile";
 import type { ISidebarItem } from "@/types/index.types";
 
 export const riderSidebarItems: ISidebarItem[] = [
@@ -15,6 +16,16 @@ export const riderSidebarItems: ISidebarItem[] = [
         title: "Ride History",
         url: "/rider/ride-history",
         component: RideHistory
+      },
+    ],
+  },
+  {
+    title: "Profile Management",
+    items: [
+      {
+        title: "Update Profile",
+        url: "/rider/update-profile",
+        component: UpdateRiderProfile
       },
     ],
   },
