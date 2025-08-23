@@ -14,6 +14,7 @@ import AboutUs from "@/pages/AboutUs";
 import Features from "@/pages/Features";
 import Contact from "@/pages/Contact";
 import { riderSidebarItems } from "./riderSidebarItems";
+import RideDetails from "@/pages/Rider/RideDetails";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
         element: <Navigate to="/rider" />,
       },
       ...generateSidebarRoutes(riderSidebarItems),
+      {
+        Component: RideDetails,
+        path: "/rider/ride-details/:id"
+      }
     ]
   },
   {

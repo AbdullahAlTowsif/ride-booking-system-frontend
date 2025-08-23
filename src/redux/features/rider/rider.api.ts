@@ -17,10 +17,18 @@ export const riderApi = baseApi.injectEndpoints({
       }),
       providesTags: ["RIDES"],
     }),
+    getSingleRide: builder.query({
+      query: (id) => ({
+        url: `/rides/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["RIDES"],
+    }),
   }),
 });
 
 export const {
   useRideRequestMutation,
   useGetMyRidesQuery,
+  useGetSingleRideQuery,
 } = riderApi;

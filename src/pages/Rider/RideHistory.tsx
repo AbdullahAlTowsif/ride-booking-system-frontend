@@ -9,18 +9,31 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useGetMyRidesQuery } from "@/redux/features/rider/rider.api";
-
+import { Link } from "react-router";
 
 interface Ride {
-  destinationLocation: {address: string};
-  pickupLocation: {address: string};
+  destinationLocation: { address: string };
+  pickupLocation: { address: string };
   _id: string;
   pickup: string;
   destination: string;
   fare: number;
-  status: "COMPLETED" | "REQUESTED" | "ACCEPTED" | "PICKED_UP" | "IN_TRANSIT" | "CANCELLED" | "REJECTED";
+  status:
+    | "COMPLETED"
+    | "REQUESTED"
+    | "ACCEPTED"
+    | "PICKED_UP"
+    | "IN_TRANSIT"
+    | "CANCELLED"
+    | "REJECTED";
   createdAt: string;
 }
 
@@ -117,6 +130,7 @@ export default function RideHistory() {
             <TableHead>Fare</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Date</TableHead>
+            <TableHead>Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -130,6 +144,13 @@ export default function RideHistory() {
                 <TableCell className="capitalize">{ride.status}</TableCell>
                 <TableCell>
                   {new Date(ride.createdAt).toLocaleDateString()}
+                </TableCell>
+                <TableCell>
+                  <Link to={`/rider/ride-details/${ride._id}`}>
+                    <Button className="hover:cursor-pointer">
+                      View Details
+                    </Button>
+                  </Link>
                 </TableCell>
               </TableRow>
             ))
