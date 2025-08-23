@@ -10,6 +10,9 @@ import { generateSidebarRoutes } from "@/utils/generateSidebarRoutes";
 import { withAuth } from "@/utils/WithAuth";
 import { createBrowserRouter, Navigate } from "react-router";
 import { adminSidebarItems } from "./adminSidebarItems";
+import AboutUs from "@/pages/AboutUs";
+import Features from "@/pages/Features";
+import Contact from "@/pages/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -44,5 +47,17 @@ export const router = createBrowserRouter([
   {
     Component: FAQ,
     path: "/faq",
-  }
+  },
+  {
+    Component: AboutUs,
+    path: "/about"
+  },
+  {
+    Component: Features,
+    path: "/features"
+  },
+  {
+    Component: Contact,
+    path: "/contact"
+  },
 ]);
