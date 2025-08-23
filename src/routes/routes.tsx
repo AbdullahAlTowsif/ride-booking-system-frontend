@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/admin" />,
+        element: <Navigate to="/admin/analytics" />,
       },
       ...generateSidebarRoutes(adminSidebarItems),
     ]
@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/rider" />,
+        element: <Navigate to="/rider/ride-history" />,
       },
       ...generateSidebarRoutes(riderSidebarItems),
       {

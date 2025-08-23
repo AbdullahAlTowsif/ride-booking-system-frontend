@@ -2,6 +2,7 @@ import { ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import Logo from "@/assets/icons/Logo";
+import { Link } from "react-router";
 
 const Hero = () => {
   return (
@@ -32,13 +33,16 @@ const Hero = () => {
               </p>
             </div>
             <div className="mt-6 flex justify-center gap-3">
+              <Link to="/login">
               <Button className="shadow-sm transition-shadow hover:shadow">
                 Get Started
-              </Button>
-              <Button variant="outline" className="group">
+              </Button></Link>
+              <Link to="/about">
+                <Button variant="outline" className="group">
                 Learn more{" "}
                 <ExternalLink className="ml-2 h-4 transition-transform group-hover:translate-x-0.5" />
               </Button>
+              </Link>
             </div>
             <div className="mt-10 flex flex-col items-center gap-5">
               <p className="font-medium text-muted-foreground lg:text-left">
