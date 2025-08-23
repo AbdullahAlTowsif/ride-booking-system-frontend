@@ -12,8 +12,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "react-hot-toast";
-import { Mail, Phone, MapPin, User } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import Navbar from "@/components/modules/Common/Navbar";
 
 interface ContactFormValues {

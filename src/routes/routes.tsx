@@ -13,6 +13,7 @@ import { adminSidebarItems } from "./adminSidebarItems";
 import AboutUs from "@/pages/AboutUs";
 import Features from "@/pages/Features";
 import Contact from "@/pages/Contact";
+import { riderSidebarItems } from "./riderSidebarItems";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,17 @@ export const router = createBrowserRouter([
         element: <Navigate to="/admin" />,
       },
       ...generateSidebarRoutes(adminSidebarItems),
+    ]
+  },
+  {
+    Component: withAuth(DashboardLayout, role.RIDER as TRole),
+    path: "/rider",
+    children: [
+      {
+        index: true,
+        element: <Navigate to="/rider" />,
+      },
+      ...generateSidebarRoutes(riderSidebarItems),
     ]
   },
   {
