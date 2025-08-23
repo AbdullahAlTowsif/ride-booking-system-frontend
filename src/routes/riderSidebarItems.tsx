@@ -1,3 +1,4 @@
+import ChangePassword from "@/pages/Auth/ChangePassword";
 import RideHistory from "@/pages/Rider/RideHistory";
 import RideRequestForm from "@/pages/Rider/RideRequestForm";
 import UpdateRiderProfile from "@/pages/Rider/UpdateRiderProfile";
@@ -27,6 +28,11 @@ export const riderSidebarItems: ISidebarItem[] = [
         url: "/rider/update-profile",
         component: UpdateRiderProfile
       },
+      {
+        title: "Change Password",
+        url: "/rider/change-password",
+        component: ChangePassword
+      }
     ],
   },
 ];
