@@ -15,22 +15,23 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "react-hot-toast";
-import { useGetMyRidesQuery, useUpdateRideStatusMutation } from "@/redux/features/driver/driver.api";
+import {
+  useGetMyRidesQuery,
+  useUpdateRideStatusMutation,
+} from "@/redux/features/driver/driver.api";
 
 const UpdateRideStatus = () => {
   const { data, isLoading } = useGetMyRidesQuery(undefined);
-//   console.log("driver rides", data);
   const [updateRideStatus] = useUpdateRideStatusMutation();
 
   if (isLoading) return <p className="text-center">Loading rides...</p>;
 
   const handleStatusChange = async (id: string, newStatus: string) => {
-    console.log("status chagne id", id);
     try {
       await updateRideStatus(id).unwrap();
       toast.success(`Ride status updated to ${newStatus}`);
     } catch (error: any) {
-        console.log(error);
+      console.log(error);
       toast.error(error?.data?.message || "Failed to update status");
     }
   };
@@ -50,30 +51,48 @@ const UpdateRideStatus = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.data?.map((ride: any) => (
-            <TableRow key={ride._id}>
-              <TableCell>{ride._id}</TableCell>
-              <TableCell>{ride.fare || "N/A"}</TableCell>
-              <TableCell>{ride.pickupLocation.address}</TableCell>
-              <TableCell>{ride.destinationLocation.address}</TableCell>
-              <TableCell>{ride.status}</TableCell>
-              <TableCell>
-                <Select
-                  onValueChange={(value) => handleStatusChange(ride._id, value)}
-                >
-                  <SelectTrigger className="w-[140px]">
-                    <SelectValue placeholder="Update Status" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="PICKED_UP">Picked Up</SelectItem>
-                    <SelectItem value="IN_TRANSIT">In Transit</SelectItem>
-                    <SelectItem value="COMPLETED">Completed</SelectItem>
-                    <SelectItem value="CANCELLED">Cancelled</SelectItem>
-                  </SelectContent>
-                </Select>
-              </TableCell>
-            </TableRow>
-          ))}
+          {data?.data?.map((ride: any) => {
+            const isCompleted = ride.status === "COMPLETED";
+            return (
+              <TableRow key={ride._id}>
+                <TableCell>{ride._id}</TableCell>
+                <TableCell>{ride.fare || "N/A"}</TableCell>
+                <TableCell>{ride.pickupLocation.address}</TableCell>
+                <TableCell>{ride.destinationLocation.address}</TableCell>
+                <TableCell>{ride.status}</TableCell>
+                <TableCell>
+                  <Select
+                    disabled={isCompleted}
+                    onValueChange={(value) =>
+                      handleStatusChange(ride._id, value)
+                    }
+                  >
+                    <SelectTrigger
+                      className={`w-[140px] ${
+                        isCompleted
+                          ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                          : ""
+                      }`}
+                    >
+                      <SelectValue
+                        placeholder={
+                          isCompleted ? "Completed" : "Update Status"
+                        }
+                      />
+                    </SelectTrigger>
+                    {!isCompleted && (
+                      <SelectContent>
+                        <SelectItem value="PICKED_UP">Picked Up</SelectItem>
+                        <SelectItem value="IN_TRANSIT">In Transit</SelectItem>
+                        <SelectItem value="COMPLETED">Completed</SelectItem>
+                        <SelectItem value="CANCELLED">Cancelled</SelectItem>
+                      </SelectContent>
+                    )}
+                  </Select>
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </div>

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   LineChart,
   Line,
