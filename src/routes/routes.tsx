@@ -15,6 +15,7 @@ import Features from "@/pages/Features";
 import Contact from "@/pages/Contact";
 import { riderSidebarItems } from "./riderSidebarItems";
 import RideDetails from "@/pages/Rider/RideDetails";
+import { driverSidebarItems } from "./driverSidebarItems";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,17 @@ export const router = createBrowserRouter([
         Component: RideDetails,
         path: "/rider/ride-details/:id"
       }
+    ]
+  },
+  {
+    Component: withAuth(DashboardLayout, role.DRIVER as TRole),
+    path: "/driver",
+    children: [
+      {
+        index: true,
+        element: <Navigate to="/driver" />,
+      },
+      ...generateSidebarRoutes(driverSidebarItems),
     ]
   },
   {
