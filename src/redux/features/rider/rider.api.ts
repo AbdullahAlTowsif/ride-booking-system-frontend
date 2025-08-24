@@ -2,6 +2,14 @@ import { baseApi } from "@/redux/baseApi";
 
 export const riderApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    applyToBeDriver: builder.mutation({
+      query: (payload) => ({
+        url: "/driver/apply-driver",
+        method: "POST",
+        data: payload,
+      }),
+      invalidatesTags: ["DRIVER"],
+  }),
     rideRequest: builder.mutation({
       query: (payload) => ({
         url: "/rides/request",
@@ -36,6 +44,7 @@ export const riderApi = baseApi.injectEndpoints({
 });
 
 export const {
+  useApplyToBeDriverMutation,
   useRideRequestMutation,
   useGetMyRidesQuery,
   useGetSingleRideQuery,

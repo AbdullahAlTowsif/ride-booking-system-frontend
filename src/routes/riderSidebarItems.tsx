@@ -1,4 +1,5 @@
 import ChangePassword from "@/pages/Auth/ChangePassword";
+import ApplyDriver from "@/pages/Rider/ApplyDriver";
 import RideHistory from "@/pages/Rider/RideHistory";
 import RideRequestForm from "@/pages/Rider/RideRequestForm";
 import UpdateRiderProfile from "@/pages/Rider/UpdateRiderProfile";
@@ -8,6 +9,11 @@ export const riderSidebarItems: ISidebarItem[] = [
   {
     title: "Dashboard",
     items: [
+      {
+        title: "Apply To Become Driver",
+        url: "/rider/apply-driver",
+        component: ApplyDriver,
+      },
       {
         title: "Ride Request",
         url: "/rider/ride-request",
