@@ -59,6 +59,21 @@ export const driverApi = baseApi.injectEndpoints({
       }),
       providesTags: ["DRIVER"],
     }),
+    getDriverProfile: builder.query({
+      query: () => ({
+        url: "/driver/profile",
+        method: "GET",
+      }),
+      providesTags: ["DRIVER"],
+    }),
+    updateDriverProfile: builder.mutation({
+      query: (payload) => ({
+        url: "/driver/update-driver-profile",
+        method: "PATCH",
+        data: payload,
+      }),
+      invalidatesTags: ["DRIVER"],
+    }),
   }),
 });
 
@@ -71,4 +86,6 @@ export const {
   useUpdateRideStatusMutation,
   useGetMyRidesQuery,
   useGetEarningHistoryQuery,
+  useGetDriverProfileQuery,
+  useUpdateDriverProfileMutation,
 } = driverApi;

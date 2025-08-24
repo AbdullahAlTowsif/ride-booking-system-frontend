@@ -25,7 +25,7 @@ export const riderApi = baseApi.injectEndpoints({
       providesTags: ["RIDES"],
     }),
     riderUpdateProfile: builder.mutation({
-      query: ({id, payload}) => ({
+      query: ({ id, payload }) => ({
         url: `/user/${id}`,
         method: "PATCH",
         data: payload,

@@ -1,6 +1,7 @@
 import AvailableRides from "@/pages/driver/AvailableRides";
 import DriverAvailability from "@/pages/driver/DriverAvailability";
 import EarningsDashboard from "@/pages/driver/EarningsDashboard";
+import UpdateDriverProfile from "@/pages/driver/UpdateDriverProfile";
 import UpdateRideStatus from "@/pages/driver/UpdateRideStatus";
 import type { ISidebarItem } from "@/types/index.types";
 
@@ -28,6 +29,16 @@ export const driverSidebarItems: ISidebarItem[] = [
         title: "Earning History",
         url: "/driver/earnings",
         component: EarningsDashboard,
+      },
+    ],
+  },
+  {
+    title: "Profile Management",
+    items: [
+      {
+        title: "Update Profile",
+        url: "/driver/update-profile",
+        component: UpdateDriverProfile
       },
     ],
   },
