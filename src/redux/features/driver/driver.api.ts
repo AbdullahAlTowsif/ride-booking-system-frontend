@@ -17,10 +17,34 @@ export const driverApi = baseApi.injectEndpoints({
       }),
       providesTags: ["DRIVER"],
     }),
+    getAvailableRides: builder.query({
+      query: () => ({
+        url: "/driver/rides-available",
+        method: "GET",
+      }),
+      providesTags: ["DRIVER"],
+    }),
+    acceptRide: builder.mutation({
+      query: (id) => ({
+        url: `/driver/rides/${id}/accept`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["DRIVER"],
+    }),
+    rejectRide: builder.mutation({
+      query: (id) => ({
+        url: `/driver/rides/${id}/reject`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["DRIVER"],
+    }),
   }),
 });
 
 export const {
   useDriverAvailabilityMutation,
   useGetDriverQuery,
+  useAcceptRideMutation,
+  useRejectRideMutation,
+  useGetAvailableRidesQuery,
 } = driverApi;

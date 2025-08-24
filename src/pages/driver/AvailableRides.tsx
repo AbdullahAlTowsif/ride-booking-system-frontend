@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useGetAllRidesQuery } from "@/redux/features/admin/admin.api";
 import {
   Table,
   TableBody,
@@ -10,8 +9,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Card, CardContent } from "@/components/ui/card";
-import { useSearchParams } from "react-router";
-import RidesFilter from "@/components/modules/Admin/RidesFilter";
+import { useAcceptRideMutation, useGetAvailableRidesQuery, useRejectRideMutation } from "@/redux/features/driver/driver.api";
+import { Button } from "@/components/ui/button";
+import toast from "react-hot-toast";
 
 // Status color mapping
 const statusColors: Record<string, string> = {
@@ -24,15 +24,11 @@ const statusColors: Record<string, string> = {
   REJECTED: "text-gray-600",
 };
 
-const AllRides = () => {
-  const [searchParams] = useSearchParams();
-
-  const rider = searchParams.get("rides") || undefined;
-  const driver = searchParams.get("driver") || undefined;
-  const status = searchParams.get("status") || undefined;
-
-  // Pass only rider, driver, and status to API
-  const { data, isLoading, isError } = useGetAllRidesQuery({ rider, driver, status });
+const AvailableRides = () => {
+  const { data, isLoading, isError } = useGetAvailableRidesQuery(undefined);
+  const [acceptRide] = useAcceptRideMutation();
+  const [rejectRide] = useRejectRideMutation();
+  console.log("available rides", data);
 
   if (isLoading) {
     return (
@@ -50,13 +46,33 @@ const AllRides = () => {
     );
   }
 
+
+  const handleAccept = async (id: string) => {
+    console.log(id);
+    try {
+      await acceptRide(id).unwrap();
+      toast.success("Ride accepted successfully!");
+    } catch (err: any) {
+      toast.error(err?.data?.message || "Failed to accept ride");
+    }
+  };
+
+  const handleReject = async (id:string) => {
+    console.log(id);
+    try {
+      await rejectRide(id).unwrap();
+      toast.success("Ride rejected successfully!");
+    } catch (err: any) {
+      toast.error(err?.data?.message || "Failed to reject ride");
+    }
+  };
+
   return (
     <div className="container mx-auto">
-      <RidesFilter />
       <Card className="p-4">
         <CardContent>
           <Table>
-            <TableCaption>A list of all Rides.</TableCaption>
+            <TableCaption>A list of all Available Rides.</TableCaption>
             <TableHeader>
               <TableRow>
                 <TableHead className="w-[60px]">#</TableHead>
@@ -64,6 +80,8 @@ const AllRides = () => {
                 <TableHead>Destination Location</TableHead>
                 <TableHead>Fare</TableHead>
                 <TableHead>Status</TableHead>
+                <TableHead>Accept ✅</TableHead>
+                <TableHead>Reject ❌</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -83,6 +101,28 @@ const AllRides = () => {
                         <span className={`${colorClass} font-medium`}>
                           {ride.status.replace("_", " ")}
                         </span>
+                      </TableCell>
+                      <TableCell className="capitalize">
+                        {/* <Link to={`/driver/incoming-request/${ride._id}`}>
+                          ✅
+                        </Link> */}
+                        <Button
+                          className="bg-white w-6 h-6 rounded-full hover:cursor-pointer hover:bg-white"
+                          onClick={() => handleAccept(ride._id)}
+                        >
+                          ✅
+                        </Button>
+                      </TableCell>
+                      <TableCell className="capitalize">
+                        {/* <Link to={`/driver/incoming-request/${ride._id}`}>
+                          ❌
+                        </Link> */}
+                        <Button
+                          className="bg-white w-6 h-6 rounded-full hover:cursor-pointer hover:bg-white"
+                          onClick={() => handleReject(ride._id)}
+                        >
+                          ❌
+                        </Button>
                       </TableCell>
                     </TableRow>
                   );
@@ -105,4 +145,4 @@ const AllRides = () => {
   );
 };
 
-export default AllRides;
+export default AvailableRides;
