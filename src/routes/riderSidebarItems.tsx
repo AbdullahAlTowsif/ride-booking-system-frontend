@@ -1,9 +1,17 @@
-import ChangePassword from "@/pages/Auth/ChangePassword";
-import ApplyDriver from "@/pages/Rider/ApplyDriver";
-import RideHistory from "@/pages/Rider/RideHistory";
-import RideRequestForm from "@/pages/Rider/RideRequestForm";
-import UpdateRiderProfile from "@/pages/Rider/UpdateRiderProfile";
+import { lazy } from "react";
+
+const ChangePassword = lazy(() => import("@/pages/Auth/ChangePassword"));
+const ApplyDriver = lazy(() => import("@/pages/Rider/ApplyDriver"));
+const RideHistory = lazy(() => import("@/pages/Rider/RideHistory"));
+const RideRequestForm = lazy(() => import("@/pages/Rider/RideRequestForm"));
+const UpdateRiderProfile = lazy(() => import("@/pages/Rider/UpdateRiderProfile"));
 import type { ISidebarItem } from "@/types/index.types";
+
+// import ChangePassword from "@/pages/Auth/ChangePassword";
+// import ApplyDriver from "@/pages/Rider/ApplyDriver";
+// import RideHistory from "@/pages/Rider/RideHistory";
+// import RideRequestForm from "@/pages/Rider/RideRequestForm";
+// import UpdateRiderProfile from "@/pages/Rider/UpdateRiderProfile";
 
 export const riderSidebarItems: ISidebarItem[] = [
   {
