@@ -16,6 +16,7 @@ import Contact from "@/pages/Contact";
 import { riderSidebarItems } from "./riderSidebarItems";
 import RideDetails from "@/pages/Rider/RideDetails";
 import { driverSidebarItems } from "./driverSidebarItems";
+import Unauthorized from "@/pages/Unauthorized";
 
 export const router = createBrowserRouter([
   {
@@ -89,4 +90,8 @@ export const router = createBrowserRouter([
     Component: Contact,
     path: "/contact"
   },
+  {
+    Component: Unauthorized,
+    path: "/unauthorized",
+  }
 ]);
