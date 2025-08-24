@@ -52,6 +52,13 @@ export const driverApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["DRIVER"],
     }),
+    getEarningHistory: builder.query({
+      query: () => ({
+        url: "/driver/earning-history",
+        method: "GET",
+      }),
+      providesTags: ["DRIVER"],
+    }),
   }),
 });
 
@@ -63,4 +70,5 @@ export const {
   useGetAvailableRidesQuery,
   useUpdateRideStatusMutation,
   useGetMyRidesQuery,
+  useGetEarningHistoryQuery,
 } = driverApi;
