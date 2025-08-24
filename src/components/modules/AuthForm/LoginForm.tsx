@@ -32,7 +32,7 @@ export function LoginForm({
       console.log(res);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      console.error(err);
+      console.error(err.data.message);
     }
   };
 

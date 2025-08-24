@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -59,8 +60,8 @@ export default function UpdateRiderProfile() {
       } else {
         toast.error("Something went wrong");
       }
-    } catch (err: unknown) {
-        toast.error("Something Went Wrong");
+    } catch (err: any) {
+        toast.error(err.data.message);
       console.error(err);
     }
   };

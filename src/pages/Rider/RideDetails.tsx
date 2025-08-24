@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-// import { Timeline } from "@/components/ui/timeline"; // If you don’t have timeline, I’ll simulate it with steps below
 import { useGetSingleRideQuery } from "@/redux/features/rider/rider.api";
 import { useParams } from "react-router";
 
