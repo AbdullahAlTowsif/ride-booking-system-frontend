@@ -36,9 +36,8 @@ const formSchema = z.object({
 
 export default function UpdateDriverProfile() {
   const { data: driverInfo, isLoading } = useGetDriverProfileQuery(undefined);
-  console.log("driverInfo", driverInfo);
-//   console.log("driverInfo", driverInfo?.data?.vehicleNumber);
-  
+  //   console.log("driverInfo", driverInfo);
+  //   console.log("driverInfo", driverInfo?.data?.vehicleNumber);
 
   const [updateDriver] = useUpdateDriverProfileMutation();
 

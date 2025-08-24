@@ -1,10 +1,10 @@
+import ChangePassword from "@/pages/Auth/ChangePassword";
 import AvailableRides from "@/pages/driver/AvailableRides";
 import DriverAvailability from "@/pages/driver/DriverAvailability";
 import EarningsDashboard from "@/pages/driver/EarningsDashboard";
 import UpdateDriverProfile from "@/pages/driver/UpdateDriverProfile";
 import UpdateRideStatus from "@/pages/driver/UpdateRideStatus";
 import type { ISidebarItem } from "@/types/index.types";
-
 
 export const driverSidebarItems: ISidebarItem[] = [
   {
@@ -13,7 +13,7 @@ export const driverSidebarItems: ISidebarItem[] = [
       {
         title: "Availability",
         url: "/driver/availabilityStatus",
-        component: DriverAvailability
+        component: DriverAvailability,
       },
       {
         title: "All Available Rides",
@@ -23,7 +23,7 @@ export const driverSidebarItems: ISidebarItem[] = [
       {
         title: "Update Ride Status",
         url: "/driver/ride-status",
-        component: UpdateRideStatus
+        component: UpdateRideStatus,
       },
       {
         title: "Earning History",
@@ -38,7 +38,12 @@ export const driverSidebarItems: ISidebarItem[] = [
       {
         title: "Update Profile",
         url: "/driver/update-profile",
-        component: UpdateDriverProfile
+        component: UpdateDriverProfile,
+      },
+      {
+        title: "Change Password",
+        url: "/driver/change-password",
+        component: ChangePassword,
       },
     ],
   },
