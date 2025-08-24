@@ -1,10 +1,19 @@
-import ChangePassword from "@/pages/Auth/ChangePassword";
-import AvailableRides from "@/pages/driver/AvailableRides";
-import DriverAvailability from "@/pages/driver/DriverAvailability";
-import EarningsDashboard from "@/pages/driver/EarningsDashboard";
-import UpdateDriverProfile from "@/pages/driver/UpdateDriverProfile";
-import UpdateRideStatus from "@/pages/driver/UpdateRideStatus";
+import { lazy } from "react";
+
+const ChangePassword = lazy(() => import("@/pages/Auth/ChangePassword"));
+const AvailableRides = lazy(() => import("@/pages/driver/AvailableRides"));
+const DriverAvailability = lazy(() => import("@/pages/driver/DriverAvailability"));
+const EarningsDashboard = lazy(() => import("@/pages/driver/EarningsDashboard"));
+const UpdateDriverProfile = lazy(() => import("@/pages/driver/UpdateDriverProfile"));
+const UpdateRideStatus = lazy(() => import("@/pages/driver/UpdateRideStatus"));
 import type { ISidebarItem } from "@/types/index.types";
+
+// import ChangePassword from "@/pages/Auth/ChangePassword";
+// import AvailableRides from "@/pages/driver/AvailableRides";
+// import DriverAvailability from "@/pages/driver/DriverAvailability";
+// import EarningsDashboard from "@/pages/driver/EarningsDashboard";
+// import UpdateDriverProfile from "@/pages/driver/UpdateDriverProfile";
+// import UpdateRideStatus from "@/pages/driver/UpdateRideStatus";
 
 export const driverSidebarItems: ISidebarItem[] = [
   {
