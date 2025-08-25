@@ -65,13 +65,16 @@ cd ride-booking-api
 bun install
 ```
 
-### 3️⃣ Environment variables
-Create a `.env` file in the root with the following keys:
-```env
-PORT=5000
-MONGO_URI=your-mongodb-uri
-JWT_SECRET=your-secret
-```
+### 3️⃣ Credentials
+- 🔑 **ADMIN**
+  - email: towsif1@gmail.com
+  - password: 123456789
+- 🔑 **DRIVER**
+  - email: karim1@gmail.com
+  - password: Password@1
+- 🔑 **RIDER**
+  - email: cokina1@gmail.com
+  - password: Password@1
 
 ### 4️⃣ Run the project
 ```bash
