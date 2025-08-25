@@ -7,6 +7,7 @@ const EarningsDashboard = lazy(() => import("@/pages/driver/EarningsDashboard"))
 const UpdateDriverProfile = lazy(() => import("@/pages/driver/UpdateDriverProfile"));
 const UpdateRideStatus = lazy(() => import("@/pages/driver/UpdateRideStatus"));
 import type { ISidebarItem } from "@/types/index.types";
+import DriverRideHistory from "@/pages/driver/DriverRideHistory";
 
 // import ChangePassword from "@/pages/Auth/ChangePassword";
 // import AvailableRides from "@/pages/driver/AvailableRides";
@@ -38,6 +39,11 @@ export const driverSidebarItems: ISidebarItem[] = [
         title: "Earning History",
         url: "/driver/earnings",
         component: EarningsDashboard,
+      },
+      {
+        title: "Rides History",
+        url: "/driver/rides-history",
+        component: DriverRideHistory,
       },
     ],
   },
