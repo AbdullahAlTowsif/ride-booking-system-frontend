@@ -62,7 +62,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/driver" />,
+        element: <Navigate to="/driver/availabilityStatus" />,
       },
       ...generateSidebarRoutes(driverSidebarItems),
     ]
