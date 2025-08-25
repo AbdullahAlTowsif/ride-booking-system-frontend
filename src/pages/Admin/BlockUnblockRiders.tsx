@@ -13,7 +13,7 @@ const BlockUnblockRiders = () => {
   const [unblockRider] = useUnblockRiderMutation();
 
   const handleAction = async (id: string, isBlock: string) => {
-    console.log(id, isBlock);
+    // console.log(id, isBlock);
     try {
       if (isBlock === "UNBLOCK") {
         await blockRider(id).unwrap();

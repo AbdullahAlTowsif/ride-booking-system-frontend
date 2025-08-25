@@ -28,7 +28,7 @@ const AvailableRides = () => {
   const { data, isLoading, isError } = useGetAvailableRidesQuery(undefined);
   const [acceptRide] = useAcceptRideMutation();
   const [rejectRide] = useRejectRideMutation();
-  console.log("available rides", data);
+  // console.log("available rides", data);
 
   if (isLoading) {
     return (
@@ -48,7 +48,7 @@ const AvailableRides = () => {
 
 
   const handleAccept = async (id: string) => {
-    console.log(id);
+    // console.log(id);
     try {
       await acceptRide(id).unwrap();
       toast.success("Ride accepted successfully!");
@@ -58,7 +58,7 @@ const AvailableRides = () => {
   };
 
   const handleReject = async (id:string) => {
-    console.log(id);
+    // console.log(id);
     try {
       await rejectRide(id).unwrap();
       toast.success("Ride rejected successfully!");

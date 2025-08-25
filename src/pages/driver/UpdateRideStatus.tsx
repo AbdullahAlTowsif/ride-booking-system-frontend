@@ -32,7 +32,7 @@ const UpdateRideStatus = () => {
       await updateRideStatus(id).unwrap();
       toast.success(`Ride status updated to ${newStatus}`);
     } catch (error: any) {
-      console.log(error);
+      // console.log(error);
       toast.error(error?.data?.message || "Failed to update status");
     }
   };

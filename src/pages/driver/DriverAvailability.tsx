@@ -13,8 +13,6 @@ export default function DriverAvailability() {
   const [updateDriver, { isLoading }] = useDriverAvailabilityMutation();
 
   const driverId = userData?.data?._id || "";
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const initialStatus = driverData?.data?.availabilityStatus || "OFFLINE";
 
   // Sync status from server when driverData changes
   useEffect(() => {

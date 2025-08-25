@@ -41,7 +41,7 @@ export default function ApplyDriver() {
         vehicleType: data.vehicleType,
         vehicleNumber: data.vehicleNumber,
       };
-      console.log("payload", payload);
+      // console.log("payload", payload);
 
       const res = await applyDriver(payload).unwrap();
       // toast.success("Ride request submitted successfully!");

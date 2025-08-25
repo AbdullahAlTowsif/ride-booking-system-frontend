@@ -50,7 +50,7 @@ export default function RideRequestForm() {
         },
         fare: Number(data.fare),
       };
-      console.log("payload", payload);
+      // console.log("payload", payload);
 
       const res = await rideRequest(payload).unwrap();
       // toast.success("Ride request submitted successfully!");

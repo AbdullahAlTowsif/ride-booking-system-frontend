@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,10 +11,7 @@ import {
   loadPoliceNumber,
   getCurrentPosition,
   buildAlertMessage,
-  whatsappLink,
-  smsLink,
   callLink,
-  mailtoLink,
 } from "@/lib/safety";
 import { useCreateAlertMutation } from "@/redux/features/alert/alert.api";
 
@@ -38,15 +35,6 @@ export default function SOSButton({ activeRideId }: Props) {
     setPoliceNumber(loadPoliceNumber());
   }, []);
 
-  const message = useMemo(() => {
-    return buildAlertMessage({
-      who: "contact",
-      rideId: activeRideId || undefined,
-      lat: loc?.lat,
-      lng: loc?.lng,
-    });
-  }, [activeRideId, loc]);
-
   async function ensureLocation() {
     if (loc) return loc;
     try {
@@ -65,11 +53,10 @@ export default function SOSButton({ activeRideId }: Props) {
   }
 
   async function onCallPolice() {
-    await ensureLocation().catch(() => {/* ignore */});
+    await ensureLocation().catch(() => {});
     window.location.href = callLink(policeNumber);
   }
 
-  // ⭐ replace manual fetch with RTK mutation
   async function onShareLocationAll() {
     try {
       const { lat, lng } = await ensureLocation();
@@ -88,29 +75,29 @@ export default function SOSButton({ activeRideId }: Props) {
     }
   }
 
-  async function onNotifyContact(c: EmergencyContact, channel: "whatsapp" | "sms" | "call" | "email") {
-    try {
-      const { lat, lng } = await ensureLocation();
-      const text = buildAlertMessage({ who: "contact", rideId: activeRideId || undefined, lat, lng });
+  // async function onNotifyContact(c: EmergencyContact, channel: "whatsapp" | "sms" | "call" | "email") {
+  //   try {
+  //     const { lat, lng } = await ensureLocation();
+  //     const text = buildAlertMessage({ who: "contact", rideId: activeRideId || undefined, lat, lng });
 
-      if (channel === "whatsapp") {
-        window.open(whatsappLink(c.phone, text), "_blank");
-        toast.success(`WhatsApp ready for ${c.name}`);
-      } else if (channel === "sms") {
-        window.location.href = smsLink(c.phone, text);
-      } else if (channel === "call") {
-        window.location.href = callLink(c.phone);
-      } else if (channel === "email") {
-        if (c.email) {
-          window.location.href = mailtoLink(c.email, "EMERGENCY ALERT", text);
-        } else {
-          toast.error("No email set for this contact");
-        }
-      }
-    } catch {
-      // already handled
-    }
-  }
+  //     if (channel === "whatsapp") {
+  //       window.open(whatsappLink(c.phone, text), "_blank");
+  //       toast.success(`WhatsApp ready for ${c.name}`);
+  //     } else if (channel === "sms") {
+  //       window.location.href = smsLink(c.phone, text);
+  //     } else if (channel === "call") {
+  //       window.location.href = callLink(c.phone);
+  //     } else if (channel === "email") {
+  //       if (c.email) {
+  //         window.location.href = mailtoLink(c.email, "EMERGENCY ALERT", text);
+  //       } else {
+  //         toast.error("No email set for this contact");
+  //       }
+  //     }
+  //   } catch {
+  //     // already handled
+  //   }
+  // }
 
   if (!hasActiveRide) return null;
 

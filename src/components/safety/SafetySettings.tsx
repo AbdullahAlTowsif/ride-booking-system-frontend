@@ -39,7 +39,7 @@ interface SafetySettingsFormValues {
 export default function SafetySettings() {
   const { data: contacts = [], isLoading } =
     useGetSafetyContactsQuery(undefined);
-  console.log(contacts.data?.[0].contacts?.[0]);
+  // console.log(contacts.data?.[0].contacts?.[0]);
   const [saveContact] = useSaveSafetyContactsMutation();
 
   const form = useForm<SafetySettingsFormValues>({
@@ -55,7 +55,7 @@ export default function SafetySettings() {
         name: data.name,
         phone: data.phone,
       };
-      console.log("payload", payload);
+      // console.log("payload", payload);
 
       const res = await saveContact(payload).unwrap();
       // toast.success("Ride request submitted successfully!");
