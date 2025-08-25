@@ -24,7 +24,7 @@ export const driverApi = baseApi.injectEndpoints({
       }),
       providesTags: ["DRIVER"],
     }),
-    getMyRides: builder.query({
+    getDriverRides: builder.query({
       query: () => ({
         url: "/driver/my-rides",
         method: "GET",
@@ -84,7 +84,7 @@ export const {
   useRejectRideMutation,
   useGetAvailableRidesQuery,
   useUpdateRideStatusMutation,
-  useGetMyRidesQuery,
+  useGetDriverRidesQuery,
   useGetEarningHistoryQuery,
   useGetDriverProfileQuery,
   useUpdateDriverProfileMutation,

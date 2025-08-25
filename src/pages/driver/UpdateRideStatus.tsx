@@ -16,12 +16,13 @@ import {
 } from "@/components/ui/select";
 import { toast } from "react-hot-toast";
 import {
-  useGetMyRidesQuery,
+  useGetDriverRidesQuery,
   useUpdateRideStatusMutation,
 } from "@/redux/features/driver/driver.api";
 
 const UpdateRideStatus = () => {
-  const { data, isLoading } = useGetMyRidesQuery(undefined);
+  const { data, isLoading } = useGetDriverRidesQuery(undefined);
+  // console.log("Driver Rides Data", data);
   const [updateRideStatus] = useUpdateRideStatusMutation();
 
   if (isLoading) return <p className="text-center">Loading rides...</p>;
