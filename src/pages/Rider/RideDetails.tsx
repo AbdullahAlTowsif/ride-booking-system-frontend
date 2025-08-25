@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { useGetSingleRideQuery } from "@/redux/features/rider/rider.api";
 import { useParams } from "react-router";
+import SOSButton from "@/components/safety/SOSButton";
 
 export default function RideDetails() {
   const { id } = useParams();
@@ -123,6 +124,11 @@ export default function RideDetails() {
           </div>
         </CardContent>
       </Card>
+        {
+          ride.status !== "COMPLETED" && (
+            <SOSButton activeRideId={id}></SOSButton>
+          )
+        }
     </div>
   );
 }

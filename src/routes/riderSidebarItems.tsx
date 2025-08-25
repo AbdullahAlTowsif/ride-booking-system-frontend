@@ -6,6 +6,7 @@ const RideHistory = lazy(() => import("@/pages/Rider/RideHistory"));
 const RideRequestForm = lazy(() => import("@/pages/Rider/RideRequestForm"));
 const UpdateRiderProfile = lazy(() => import("@/pages/Rider/UpdateRiderProfile"));
 import type { ISidebarItem } from "@/types/index.types";
+import SafetySettings from "@/components/safety/SafetySettings";
 
 // import ChangePassword from "@/pages/Auth/ChangePassword";
 // import ApplyDriver from "@/pages/Rider/ApplyDriver";
@@ -46,6 +47,16 @@ export const riderSidebarItems: ISidebarItem[] = [
         title: "Change Password",
         url: "/rider/change-password",
         component: ChangePassword
+      }
+    ],
+  },
+  {
+    title: "Safety Settings",
+    items: [
+      {
+        title: "Setting",
+        url: "/rider/safety-setting",
+        component: SafetySettings
       }
     ],
   },
