@@ -6,8 +6,8 @@ const DriverAvailability = lazy(() => import("@/pages/driver/DriverAvailability"
 const EarningsDashboard = lazy(() => import("@/pages/driver/EarningsDashboard"));
 const UpdateDriverProfile = lazy(() => import("@/pages/driver/UpdateDriverProfile"));
 const UpdateRideStatus = lazy(() => import("@/pages/driver/UpdateRideStatus"));
+const DriverRideHistory = lazy(() => import("@/pages/driver/DriverRideHistory"));
 import type { ISidebarItem } from "@/types/index.types";
-import DriverRideHistory from "@/pages/driver/DriverRideHistory";
 
 // import ChangePassword from "@/pages/Auth/ChangePassword";
 // import AvailableRides from "@/pages/driver/AvailableRides";
@@ -15,6 +15,7 @@ import DriverRideHistory from "@/pages/driver/DriverRideHistory";
 // import EarningsDashboard from "@/pages/driver/EarningsDashboard";
 // import UpdateDriverProfile from "@/pages/driver/UpdateDriverProfile";
 // import UpdateRideStatus from "@/pages/driver/UpdateRideStatus";
+// import DriverRideHistory from "@/pages/driver/DriverRideHistory";
 
 export const driverSidebarItems: ISidebarItem[] = [
   {
