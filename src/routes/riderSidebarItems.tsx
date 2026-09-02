@@ -5,6 +5,7 @@ const ApplyDriver = lazy(() => import("@/pages/Rider/ApplyDriver"));
 const RideHistory = lazy(() => import("@/pages/Rider/RideHistory"));
 const RideRequestForm = lazy(() => import("@/pages/Rider/RideRequestForm"));
 const UpdateRiderProfile = lazy(() => import("@/pages/Rider/UpdateRiderProfile"));
+const PaymentHistory = lazy(() => import("@/pages/Rider/PaymentHistory"));
 import type { ISidebarItem } from "@/types/index.types";
 import SafetySettings from "@/components/safety/SafetySettings";
 
@@ -26,6 +27,11 @@ export const riderSidebarItems: ISidebarItem[] = [
         title: "Ride History",
         url: "/rider/ride-history",
         component: RideHistory
+      },
+      {
+        title: "Payment History",
+        url: "/rider/payment-history",
+        component: PaymentHistory
       },
     ],
   },

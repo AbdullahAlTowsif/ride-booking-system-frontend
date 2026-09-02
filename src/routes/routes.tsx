@@ -17,6 +17,9 @@ import RideDetails from "@/pages/Rider/RideDetails";
 import { driverSidebarItems } from "./driverSidebarItems";
 import Unauthorized from "@/pages/Unauthorized";
 import ErrorPage from "@/pages/ErrorPage";
+import PaymentSuccess from "@/pages/Payment/PaymentSuccess";
+import PaymentFail from "@/pages/Payment/PaymentFail";
+import PaymentCancel from "@/pages/Payment/PaymentCancel";
 
 export const router = createBrowserRouter([
   {
@@ -93,6 +96,18 @@ export const router = createBrowserRouter([
   {
     Component: Unauthorized,
     path: "/unauthorized",
+  },
+  {
+    Component: PaymentSuccess,
+    path: "/payment/success",
+  },
+  {
+    Component: PaymentFail,
+    path: "/payment/fail",
+  },
+  {
+    Component: PaymentCancel,
+    path: "/payment/cancel",
   },
   {
     Component: ErrorPage,
