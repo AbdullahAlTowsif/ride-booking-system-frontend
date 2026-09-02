@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useRideRequestMutation } from "@/redux/features/rider/rider.api";
 import { toast } from "react-hot-toast";
+import { getCurrentPosition } from "@/lib/safety";
 
 interface RideRequestFormValues {
   pickupLocation: string;
@@ -39,18 +40,28 @@ export default function RideRequestForm() {
 
   const onSubmit: SubmitHandler<RideRequestFormValues> = async (data) => {
     try {
+      let coordinates = { lat: 0, lng: 0 };
+      try {
+        const pos = await getCurrentPosition();
+        coordinates = {
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude,
+        };
+      } catch {
+        // geolocation unavailable/denied — fall back to 0,0
+      }
+
       const payload = {
         pickupLocation: {
           address: data.pickupLocation,
-          coordinates: { lat: 0, lng: 0 },
+          coordinates,
         },
         destinationLocation: {
           address: data.destinationLocation,
-          coordinates: { lat: 0, lng: 0 },
+          coordinates,
         },
         fare: Number(data.fare),
       };
-      // console.log("payload", payload);
 
       const res = await rideRequest(payload).unwrap();
       // toast.success("Ride request submitted successfully!");
@@ -60,7 +71,6 @@ export default function RideRequestForm() {
       } else {
         toast.error("Something went wrong");
       }
-      form.reset();
     } catch (err: any) {
       console.error(err);
       toast.error(err?.data?.message || "Something went wrong");

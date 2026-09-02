@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Car } from "lucide-react";
 import { Link } from "react-router";
 
 export default function CallToAction() {
@@ -20,8 +19,8 @@ export default function CallToAction() {
           <Button
             size="lg"
             className="bg-white text-blue-600 hover:bg-gray-100 font-semibold dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600"
+            asChild
           >
-            <Car className="mr-2 h-5 w-5" />{" "}
             <Link to="/rider/ride-request">Book a Ride</Link>
           </Button>
         </div>

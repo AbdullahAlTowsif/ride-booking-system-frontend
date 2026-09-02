@@ -8,11 +8,12 @@ import SOSButton from "@/components/safety/SOSButton";
 
 export default function RideDetails() {
   const { id } = useParams();
-  const { data, isLoading } = useGetSingleRideQuery(id);
-  // console.log(data);
+  const { data, isLoading, isError } = useGetSingleRideQuery(id);
 
   if (isLoading) return <p className="text-center">Loading...</p>;
   const ride = data?.data;
+
+  if (isError || !ride) return <p className="text-center">Ride not found</p>;
 
   return (
     <div className="max-w-3xl mx-auto p-6">

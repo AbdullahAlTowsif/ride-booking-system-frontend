@@ -33,13 +33,12 @@ export default function DriverAvailability() {
       };
     //   console.log("payload", payload);
 
-      const res = await updateDriver(payload).unwrap();
-      console.log("res", res);
+      await updateDriver(payload).unwrap();
       toast.success(`You are now ${newStatus}`);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error(error);
-      toast.error(error.data.message);
+      toast.error(error?.data?.message || "Failed to update availability");
       setStatus(previousStatus);
     }
   };

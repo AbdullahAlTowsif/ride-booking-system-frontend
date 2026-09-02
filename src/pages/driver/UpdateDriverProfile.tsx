@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -44,13 +45,25 @@ export default function UpdateDriverProfile() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: driverInfo?.data?.user?.name || "",
-      phone: driverInfo?.data?.user?.phone || "",
-      address: driverInfo?.data?.user?.address || "",
-      vehicleNumber: driverInfo?.data?.vehicleNumber || "",
-      vehicleType: driverInfo?.data?.vehicleType || "",
+      name: "",
+      phone: "",
+      address: "",
+      vehicleNumber: "",
+      vehicleType: "",
     },
   });
+
+  useEffect(() => {
+    if (driverInfo?.data) {
+      form.reset({
+        name: driverInfo.data.user?.name || "",
+        phone: driverInfo.data.user?.phone || "",
+        address: driverInfo.data.user?.address || "",
+        vehicleNumber: driverInfo.data.vehicleNumber || "",
+        vehicleType: driverInfo.data.vehicleType || "",
+      });
+    }
+  }, [driverInfo, form]);
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
@@ -66,13 +79,13 @@ export default function UpdateDriverProfile() {
         toast.error("Something went wrong");
       }
     } catch (err: any) {
-      toast.error(err.data.message);
+      toast.error(err?.data?.message || "Something went wrong");
       console.error(err);
     }
   };
 
   if (isLoading) {
-    <p>Loading...</p>;
+    return <p>Loading...</p>;
   }
 
   return (

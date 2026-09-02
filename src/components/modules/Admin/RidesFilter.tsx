@@ -109,7 +109,7 @@ export default function RidesFilter() {
             <SelectGroup>
               <SelectLabel>Status</SelectLabel>
               {["REQUESTED","ACCEPTED","PICKED_UP","IN_TRANSIT","COMPLETED","CANCELLED","REJECTED"].map(status => (
-                <SelectItem key={status} value={status}>{status.replace("_", " ")}</SelectItem>
+                <SelectItem key={status} value={status}>{status.replaceAll("_", " ")}</SelectItem>
               ))}
             </SelectGroup>
           </SelectContent>

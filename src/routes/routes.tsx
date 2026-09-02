@@ -5,7 +5,6 @@ import Login from "@/pages/Auth/Login";
 import Register from "@/pages/Auth/Register";
 import FAQ from "@/pages/FAQ";
 import Homepage from "@/pages/Landing/Homepage";
-import type { TRole } from "@/types/index.types";
 import { generateSidebarRoutes } from "@/utils/generateSidebarRoutes";
 import { withAuth } from "@/utils/WithAuth";
 import { createBrowserRouter, Navigate } from "react-router";
@@ -31,7 +30,7 @@ export const router = createBrowserRouter([
     ]
   },
   {
-    Component: withAuth(DashboardLayout, role.ADMIN as TRole),
+    Component: withAuth(DashboardLayout, role.ADMIN),
     path: "/admin",
     children: [
       {
@@ -42,7 +41,7 @@ export const router = createBrowserRouter([
     ]
   },
   {
-    Component: withAuth(DashboardLayout, role.RIDER as TRole),
+    Component: withAuth(DashboardLayout, role.RIDER),
     path: "/rider",
     children: [
       {
@@ -57,7 +56,7 @@ export const router = createBrowserRouter([
     ]
   },
   {
-    Component: withAuth(DashboardLayout, role.DRIVER as TRole),
+    Component: withAuth(DashboardLayout, role.DRIVER),
     path: "/driver",
     children: [
       {

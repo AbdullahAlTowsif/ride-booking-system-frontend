@@ -1,30 +1,33 @@
 import { axiosInstance } from "@/lib/axios";
 import type { BaseQueryFn } from "@reduxjs/toolkit/query";
-import type { AxiosError, AxiosRequestConfig } from "axios";
+import axios, { type AxiosError, type AxiosRequestConfig } from "axios";
+
+type AxiosQueryArgs = {
+  url: string;
+  method?: AxiosRequestConfig["method"];
+  data?: AxiosRequestConfig["data"];
+  params?: AxiosRequestConfig["params"];
+  headers?: AxiosRequestConfig["headers"];
+};
 
 const axiosBaseQuery =
-  (): BaseQueryFn<
-    {
-      url: string;
-      method?: AxiosRequestConfig["method"];
-      data?: AxiosRequestConfig["data"];
-      params?: AxiosRequestConfig["params"];
-      headers?: AxiosRequestConfig["headers"];
-    },
-    unknown,
-    unknown
-  > =>
-  async ({ url, method, data, params, headers }) => {
+  (): BaseQueryFn<AxiosQueryArgs, unknown, unknown> =>
+  async (args, { signal }) => {
+    const { url, method, data, params, headers } = args;
     try {
       const result = await axiosInstance({
-        url: url,
+        url,
         method,
         data,
         params,
         headers,
+        signal,
       });
       return { data: result.data };
     } catch (axiosError) {
+      if (axios.isCancel(axiosError)) {
+        return { error: { status: "CANCELLED", data: undefined } };
+      }
       const err = axiosError as AxiosError;
       return {
         error: {
@@ -33,6 +36,6 @@ const axiosBaseQuery =
         },
       };
     }
-};
+  };
 
 export default axiosBaseQuery;

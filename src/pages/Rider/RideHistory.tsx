@@ -156,7 +156,7 @@ export default function RideHistory() {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={6} className="text-center">
+              <TableCell colSpan={7} className="text-center">
                 No rides found.
               </TableCell>
             </TableRow>

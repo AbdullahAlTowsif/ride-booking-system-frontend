@@ -34,9 +34,9 @@ const Contact = () => {
   });
 
   const onSubmit: SubmitHandler<ContactFormValues> = (data) => {
-    console.log("Form submitted:", data);
-    toast.success("Message sent successfully!");
-    form.reset();
+    void data;
+    // TODO: wire to a backend endpoint when available
+    toast.error("Contact form is not yet connected to a backend.");
   };
 
   return (

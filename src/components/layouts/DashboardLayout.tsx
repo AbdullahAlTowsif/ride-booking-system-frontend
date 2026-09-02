@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import { AppSidebar } from "@/components/app-sidebar"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -20,7 +21,9 @@ export default function DashboardLayout() {
           />
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4">
-          <Outlet></Outlet>
+          <Suspense fallback={<p className="text-center text-muted-foreground py-8">Loading...</p>}>
+            <Outlet></Outlet>
+          </Suspense>
         </div>
       </SidebarInset>
     </SidebarProvider>

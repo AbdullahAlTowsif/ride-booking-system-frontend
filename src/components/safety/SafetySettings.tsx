@@ -39,7 +39,6 @@ interface SafetySettingsFormValues {
 export default function SafetySettings() {
   const { data: contacts = [], isLoading } =
     useGetSafetyContactsQuery(undefined);
-  // console.log(contacts.data?.[0].contacts?.[0]);
   const [saveContact] = useSaveSafetyContactsMutation();
 
   const form = useForm<SafetySettingsFormValues>({
@@ -65,7 +64,6 @@ export default function SafetySettings() {
       } else {
         toast.error("Something went wrong");
       }
-      form.reset();
     } catch (err: any) {
       console.error(err);
       toast.error(err?.data?.message || "Something went wrong");
@@ -85,7 +83,7 @@ export default function SafetySettings() {
         <CardContent>
           {isLoading ? (
             <p>Loading contacts...</p>
-          ) : contacts.length === 0 ? (
+          ) : !contacts?.[0]?.contacts?.length ? (
             <p>No safety contacts added yet.</p>
           ) : (
             <Table>
@@ -96,7 +94,7 @@ export default function SafetySettings() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {contacts.data?.[0].contacts.map((c: any) => (
+                {contacts?.[0]?.contacts?.map((c: any) => (
                   <TableRow key={c._id}>
                     <TableCell>{c.name}</TableCell>
                     <TableCell>{c.phone}</TableCell>
@@ -118,7 +116,7 @@ export default function SafetySettings() {
               <FormField
                 control={form.control}
                 name="name"
-                rules={{ required: "Pickup location is required" }}
+                rules={{ required: "Name is required" }}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Name</FormLabel>
@@ -132,7 +130,7 @@ export default function SafetySettings() {
               <FormField
                 control={form.control}
                 name="phone"
-                rules={{ required: "Destination location is required" }}
+                rules={{ required: "Phone is required" }}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Phone</FormLabel>

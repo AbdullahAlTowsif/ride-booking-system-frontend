@@ -7,7 +7,7 @@ const alertApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: "/alerts",
         method: "POST",
-        body: data,
+        data,
       }),
       invalidatesTags: ["ALERT"],
     }),

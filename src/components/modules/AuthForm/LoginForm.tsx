@@ -33,7 +33,7 @@ export function LoginForm({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error(err);
-      toast.error(err.data.message)
+      toast.error(err?.data?.message || "Login failed")
     }
   };
 

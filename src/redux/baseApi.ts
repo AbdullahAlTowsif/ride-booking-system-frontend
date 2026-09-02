@@ -5,5 +5,7 @@ export const baseApi = createApi({
     reducerPath: "baseApi",
     baseQuery: axiosBaseQuery(),
     tagTypes: ["USER", "RIDES", "REPORT", "DRIVER", "ALERT", "SAFETY"],
+    refetchOnFocus: true,
+    refetchOnReconnect: true,
     endpoints: () => ({}),
 });

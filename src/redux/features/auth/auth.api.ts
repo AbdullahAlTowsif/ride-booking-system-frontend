@@ -7,7 +7,6 @@ export const authApi = baseApi.injectEndpoints({
         url: "/auth/login",
         method: "POST",
         data: userInfo,
-        // body: userInfo,
       }),
     }),
     logout: builder.mutation({
@@ -22,7 +21,6 @@ export const authApi = baseApi.injectEndpoints({
         url: "/user/register",
         method: "POST",
         data: userInfo,
-        // body: userInfo,
       }),
     }),
     userInfo: builder.query({

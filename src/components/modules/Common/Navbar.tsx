@@ -11,7 +11,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import {
   authApi,
   useLogoutMutation,
@@ -35,13 +35,14 @@ const navigationLinks = [
 
 export default function Navbar() {
   const {data} = useUserInfoQuery(undefined);
-  // console.log(data);
   const [logout] = useLogoutMutation();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     await logout(undefined);
     dispatch(authApi.util.resetApiState());
+    navigate("/login");
   };
 
   // Filter navigation links based on user role
@@ -105,9 +106,9 @@ export default function Navbar() {
           </Popover>
           {/* Main nav */}
           <div className="flex items-center gap-6">
-            <a href="#" className="text-primary hover:text-primary/90">
+            <Link to="/" className="text-primary hover:text-primary/90">
               <Logo />
-            </a>
+            </Link>
             {/* Navigation menu */}
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-2">

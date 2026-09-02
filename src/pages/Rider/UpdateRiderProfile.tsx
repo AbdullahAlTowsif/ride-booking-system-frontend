@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -31,17 +32,24 @@ const formSchema = z.object({
 
 export default function UpdateRiderProfile() {
   const { data: userInfo, isLoading } = useUserInfoQuery(undefined);
-  //   console.log(userInfo?.data?._id);
-  //   console.log("rider update user info", userInfo);
   const [updateRider] = useRiderUpdateProfileMutation();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: userInfo?.data?.name || "",
-      phone: userInfo?.data?.phone || "",
+      name: "",
+      phone: "",
     },
   });
+
+  useEffect(() => {
+    if (userInfo?.data) {
+      form.reset({
+        name: userInfo.data.name || "",
+        phone: userInfo.data.phone || "",
+      });
+    }
+  }, [userInfo, form]);
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
 
@@ -61,14 +69,12 @@ export default function UpdateRiderProfile() {
         toast.error("Something went wrong");
       }
     } catch (err: any) {
-        toast.error(err.data.message);
+      toast.error(err?.data?.message || "Something went wrong");
       console.error(err);
     }
   };
 
-  if (isLoading) {
-    <p>Loading...</p>;
-  }
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <div className="w-full max-w-4xl mx-auto px-5 mt-16">

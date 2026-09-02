@@ -50,7 +50,7 @@ export const driverApi = baseApi.injectEndpoints({
         url: `/driver/rides/${id}/status`,
         method: "PATCH",
       }),
-      invalidatesTags: ["DRIVER"],
+      invalidatesTags: ["DRIVER", "RIDES"],
     }),
     getEarningHistory: builder.query({
       query: () => ({

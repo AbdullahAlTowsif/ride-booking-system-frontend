@@ -12,6 +12,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { useSearchParams } from "react-router";
 import RidesFilter from "@/components/modules/Admin/RidesFilter";
+import { Loader2 } from "lucide-react";
 
 // Status color mapping
 const statusColors: Record<string, string> = {
@@ -37,7 +38,7 @@ const AllRides = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <span className="animate-spin text-primary">Loading...</span>
+        <Loader2 className="animate-spin text-primary" />
       </div>
     );
   }
@@ -81,7 +82,7 @@ const AllRides = () => {
                       <TableCell className="capitalize">{ride.fare}</TableCell>
                       <TableCell>
                         <span className={`${colorClass} font-medium`}>
-                          {ride.status.replace("_", " ")}
+                          {ride.status.replaceAll("_", " ")}
                         </span>
                       </TableCell>
                     </TableRow>

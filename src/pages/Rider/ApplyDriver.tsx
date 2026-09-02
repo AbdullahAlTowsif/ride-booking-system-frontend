@@ -51,7 +51,6 @@ export default function ApplyDriver() {
       } else {
         toast.error("Something went wrong");
       }
-      form.reset();
     } catch (err: any) {
       console.error(err);
       toast.error(err?.data?.message || "Something went wrong");

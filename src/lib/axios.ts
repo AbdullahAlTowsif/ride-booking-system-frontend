@@ -6,18 +6,6 @@ export const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-// Add a request interceptor
-axiosInstance.interceptors.request.use(
-  function (config) {
-    // Do something before request is sent
-    return config;
-  },
-  function (error) {
-    // Do something with request error
-    return Promise.reject(error);
-  }
-);
-
 let isRefreshing = false;
 let pendingQueue: {
   resolve: (value: unknown) => void;
@@ -38,21 +26,14 @@ const processQueue = (error: unknown) => {
 
 // Add a response interceptor
 axiosInstance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
+  (response) => response,
   async (error) => {
-    // console.log("Request Failed", error.response);
-
-    const originalRequest = error.config as AxiosRequestConfig & {_retry: boolean};
-    // console.log(originalRequest);
-
     if (
-      error.response.status === 500 &&
-      error.response.data.message === "jwt expired" &&
-      !originalRequest._retry
+      error.response?.status === 500 &&
+      error.response?.data?.message === "jwt expired" &&
+      !error.config?._retry
     ) {
-      console.log("Your token is expired");
+      const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
 
       originalRequest._retry = true;
 
@@ -61,25 +42,21 @@ axiosInstance.interceptors.response.use(
           pendingQueue.push({ resolve, reject });
         })
           .then(() => axiosInstance(originalRequest))
-          .catch((error) => Promise.reject(error));
+          .catch((err) => Promise.reject(err));
       }
       isRefreshing = true;
       try {
-        const res = await axiosInstance.post("/auth/refresh-token");
-        console.log("New token arrived", res);
+        await axiosInstance.post("/auth/refresh-token");
 
         processQueue(null);
-
-        return axiosInstance(originalRequest);
-      } catch (error) {
-        // console.log(error);
-        processQueue(error);
-        return Promise.reject(error);
+      } catch (refreshError) {
+        processQueue(refreshError);
+        return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;
       }
+      return axiosInstance(originalRequest);
     }
-    // For Everything
     return Promise.reject(error);
   }
 );

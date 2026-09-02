@@ -5,10 +5,22 @@ export type EmergencyContact = {
   email?: string;
 };
 
-const LS_KEY = "999";
-const POLICE_KEY = "999";
+const LS_KEY = "safety.contacts";
+const POLICE_KEY = "safety.police";
+const LEGACY_KEY = "999";
+
+function migrateLegacyKey() {
+  try {
+    if (!localStorage.getItem(LS_KEY) && localStorage.getItem(LEGACY_KEY)) {
+      localStorage.setItem(LS_KEY, localStorage.getItem(LEGACY_KEY)!);
+    }
+  } catch {
+    // ignore migration errors
+  }
+}
 
 export function loadContacts(): EmergencyContact[] {
+  migrateLegacyKey();
   try {
     const raw = localStorage.getItem(LS_KEY);
     return raw ? JSON.parse(raw) : [];

@@ -8,12 +8,6 @@ const UpdateRiderProfile = lazy(() => import("@/pages/Rider/UpdateRiderProfile")
 import type { ISidebarItem } from "@/types/index.types";
 import SafetySettings from "@/components/safety/SafetySettings";
 
-// import ChangePassword from "@/pages/Auth/ChangePassword";
-// import ApplyDriver from "@/pages/Rider/ApplyDriver";
-// import RideHistory from "@/pages/Rider/RideHistory";
-// import RideRequestForm from "@/pages/Rider/RideRequestForm";
-// import UpdateRiderProfile from "@/pages/Rider/UpdateRiderProfile";
-
 export const riderSidebarItems: ISidebarItem[] = [
   {
     title: "Dashboard",

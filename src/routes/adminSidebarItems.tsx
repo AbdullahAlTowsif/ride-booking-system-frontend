@@ -1,11 +1,4 @@
 import { lazy } from "react";
-// import AllRides from "@/pages/Admin/AllRides";
-// import AllUsers from "@/pages/Admin/AllUsers";
-// import AnalyticsReport from "@/pages/Admin/AnalyticsReport";
-// import ApproveSuspendDriver from "@/pages/Admin/ApproveSuspendDriver";
-// import BlockUnblockRiders from "@/pages/Admin/BlockUnblockRiders";
-// import UpdateAdminProfile from "@/pages/Admin/UpdateAdminProfile";
-// import ChangePassword from "@/pages/Auth/ChangePassword";
 const AllRides = lazy(() => import("@/pages/Admin/AllRides"));
 const AllUsers = lazy(() => import("@/pages/Admin/AllUsers"));
 const AnalyticsReport = lazy(() => import("@/pages/Admin/AnalyticsReport"));

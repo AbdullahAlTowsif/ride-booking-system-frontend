@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -73,12 +72,12 @@ export function RegisterForm({
     };
 
     try {
-      const result = await register(userInfo).unwrap();
-      console.log(result);
+      await register(userInfo).unwrap();
       toast.success("User Created Successfully!");
       navigate("/");
     } catch (error: any) {
-      console.error(error.data.message);
+      console.error(error);
+      toast.error(error?.data?.message || "Registration failed");
     }
   };
 
@@ -103,9 +102,6 @@ export function RegisterForm({
                   <FormControl>
                     <Input placeholder="John Doe" {...field} />
                   </FormControl>
-                  <FormDescription className="sr-only">
-                    This is your public display name.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -123,9 +119,6 @@ export function RegisterForm({
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription className="sr-only">
-                    This is your public display name.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -139,9 +132,6 @@ export function RegisterForm({
                   <FormControl>
                     <Password {...field} />
                   </FormControl>
-                  <FormDescription className="sr-only">
-                    This is your public display name.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -155,9 +145,6 @@ export function RegisterForm({
                   <FormControl>
                     <Password {...field} />
                   </FormControl>
-                  <FormDescription className="sr-only">
-                    This is your public display name.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -174,13 +161,13 @@ export function RegisterForm({
           </span>
         </div>
 
-        <Link to={`${config.baseUrl}/auth/google`}>
+        <Link to={`${config.googleAuthUrl || `${config.baseUrl}/auth/google`}`}>
           <Button
             type="button"
             variant="outline"
             className="w-full cursor-pointer"
           >
-            Login with Google
+            Register with Google
           </Button>
         </Link>
       </div>

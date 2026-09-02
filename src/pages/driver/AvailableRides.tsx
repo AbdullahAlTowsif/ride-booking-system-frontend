@@ -12,6 +12,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useAcceptRideMutation, useGetAvailableRidesQuery, useRejectRideMutation } from "@/redux/features/driver/driver.api";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
+import { Loader2 } from "lucide-react";
 
 // Status color mapping
 const statusColors: Record<string, string> = {
@@ -28,12 +29,11 @@ const AvailableRides = () => {
   const { data, isLoading, isError } = useGetAvailableRidesQuery(undefined);
   const [acceptRide] = useAcceptRideMutation();
   const [rejectRide] = useRejectRideMutation();
-  // console.log("available rides", data);
 
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <span className="animate-spin text-primary">Loading...</span>
+        <Loader2 className="animate-spin text-primary" />
       </div>
     );
   }
@@ -48,7 +48,6 @@ const AvailableRides = () => {
 
 
   const handleAccept = async (id: string) => {
-    // console.log(id);
     try {
       await acceptRide(id).unwrap();
       toast.success("Ride accepted successfully!");
@@ -58,7 +57,6 @@ const AvailableRides = () => {
   };
 
   const handleReject = async (id:string) => {
-    // console.log(id);
     try {
       await rejectRide(id).unwrap();
       toast.success("Ride rejected successfully!");
@@ -99,7 +97,7 @@ const AvailableRides = () => {
                       <TableCell className="capitalize">{ride.fare}</TableCell>
                       <TableCell>
                         <span className={`${colorClass} font-medium`}>
-                          {ride.status.replace("_", " ")}
+                          {ride.status.replaceAll("_", " ")}
                         </span>
                       </TableCell>
                       <TableCell className="capitalize">
@@ -130,7 +128,7 @@ const AvailableRides = () => {
               ) : (
                 <TableRow>
                   <TableCell
-                    colSpan={5}
+                    colSpan={7}
                     className="text-center text-gray-500 py-4"
                   >
                     No rides found

@@ -10,7 +10,6 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -63,7 +62,7 @@ export default function ChangePassword() {
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      toast.error(err.data.message);
+      toast.error(err?.data?.message || "Something went wrong");
       console.error(err);
     }
   };
@@ -91,9 +90,6 @@ export default function ChangePassword() {
                     <FormControl>
                       <Password {...field} />
                     </FormControl>
-                    <FormDescription className="sr-only">
-                      This is your public display name.
-                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -107,9 +103,6 @@ export default function ChangePassword() {
                     <FormControl>
                       <Password {...field} />
                     </FormControl>
-                    <FormDescription className="sr-only">
-                      This is your public display name.
-                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}

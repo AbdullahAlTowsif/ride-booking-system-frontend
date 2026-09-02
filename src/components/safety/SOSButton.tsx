@@ -75,30 +75,6 @@ export default function SOSButton({ activeRideId }: Props) {
     }
   }
 
-  // async function onNotifyContact(c: EmergencyContact, channel: "whatsapp" | "sms" | "call" | "email") {
-  //   try {
-  //     const { lat, lng } = await ensureLocation();
-  //     const text = buildAlertMessage({ who: "contact", rideId: activeRideId || undefined, lat, lng });
-
-  //     if (channel === "whatsapp") {
-  //       window.open(whatsappLink(c.phone, text), "_blank");
-  //       toast.success(`WhatsApp ready for ${c.name}`);
-  //     } else if (channel === "sms") {
-  //       window.location.href = smsLink(c.phone, text);
-  //     } else if (channel === "call") {
-  //       window.location.href = callLink(c.phone);
-  //     } else if (channel === "email") {
-  //       if (c.email) {
-  //         window.location.href = mailtoLink(c.email, "EMERGENCY ALERT", text);
-  //       } else {
-  //         toast.error("No email set for this contact");
-  //       }
-  //     }
-  //   } catch {
-  //     // already handled
-  //   }
-  // }
-
   if (!hasActiveRide) return null;
 
   return (
