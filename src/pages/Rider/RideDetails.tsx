@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { useGetSingleRideQuery } from "@/redux/features/rider/rider.api";
 import { useParams } from "react-router";
 import SOSButton from "@/components/safety/SOSButton";
+import PayNowButton from "@/components/modules/Payment/PayNowButton";
+import PaymentStatusBadge from "@/components/modules/Payment/PaymentStatusBadge";
 
 export default function RideDetails() {
   const { id } = useParams();
@@ -123,6 +125,31 @@ export default function RideDetails() {
               )}
             </ol>
           </div>
+
+          {/* Payment Information */}
+          {ride.status === "COMPLETED" && (
+            <div>
+              <h3 className="text-lg font-semibold">Payment Information</h3>
+              <Separator className="my-2" />
+              <div className="space-y-3">
+                <div>
+                  <span className="font-medium">Payment Status:</span>{" "}
+                  {ride.isPaid ? (
+                    <PaymentStatusBadge status="VALID" />
+                  ) : (
+                    <PaymentStatusBadge status="INITIATED" />
+                  )}
+                </div>
+                {!ride.isPaid && (
+                  <PayNowButton
+                    rideId={id!}
+                    isPaid={ride.isPaid}
+                    rideStatus={ride.status}
+                  />
+                )}
+              </div>
+            </div>
+          )}
         </CardContent>
       </Card>
         {
